@@ -22,7 +22,6 @@ public class Atividade04 extends Application {
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
-        // Entradas
         grid.add(new Label("Nome do Aluno:"), 0, 0);
         TextField nomeField = new TextField();
         grid.add(nomeField, 1, 0);
@@ -39,15 +38,12 @@ public class Atividade04 extends Application {
         TextField nota3Field = new TextField();
         grid.add(nota3Field, 1, 3);
 
-        // Botão
         Button btnCalcular = new Button("Calcular Média");
-        grid.add(btnCalcular, 0, 4, 2, 1); // Ocupa 2 colunas
+        grid.add(btnCalcular, 0, 4, 2, 1);
 
-        // Resultado
         Label lblResultado = new Label("Resultado:");
         grid.add(lblResultado, 0, 5, 2, 1);
 
-        // --- Lógica de Eventos ---
 
         btnCalcular.setOnAction(event -> {
             try {
