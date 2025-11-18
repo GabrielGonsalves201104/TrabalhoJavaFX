@@ -31,7 +31,6 @@ public class Atividade08 extends Application {
 
         Label lblInstrucao = new Label("Eu sorteei um número de 1 a 10. Tente adivinhar!");
 
-        // Caixa de entrada
         HBox entradaBox = new HBox(10);
         entradaBox.setAlignment(Pos.CENTER);
         Label lblTentativa = new Label("Sua tentativa:");
@@ -39,22 +38,18 @@ public class Atividade08 extends Application {
         tentativaField.setPrefWidth(60);
         entradaBox.getChildren().addAll(lblTentativa, tentativaField);
 
-        // Botões
         HBox botoesBox = new HBox(10);
         botoesBox.setAlignment(Pos.CENTER);
         btnVerificar = new Button("Verificar");
         btnTentarNovamente = new Button("Tentar Novamente");
         botoesBox.getChildren().addAll(btnVerificar, btnTentarNovamente);
 
-        // Resultado
         lblResultado = new Label("Boa sorte!");
 
-        // --- Lógica de Eventos ---
         btnVerificar.setOnAction(event -> verificarTentativa());
 
         btnTentarNovamente.setOnAction(event -> iniciarNovoJogo());
 
-        // Inicia o primeiro jogo
         iniciarNovoJogo();
 
         vbox.getChildren().addAll(lblInstrucao, entradaBox, botoesBox, lblResultado);
@@ -63,17 +58,15 @@ public class Atividade08 extends Application {
         primaryStage.show();
     }
 
-    // Inicia um novo jogo
     private void iniciarNovoJogo() {
-        numeroSecreto = random.nextInt(10) + 1; // Gera número de 1 a 10
+        numeroSecreto = random.nextInt(10) + 1;
         lblResultado.setText("Novo jogo! Digite um número.");
         tentativaField.clear();
-        tentativaField.setDisable(false); // Habilita o campo
-        btnVerificar.setDisable(false);   // Habilita o botão
-        btnTentarNovamente.setDisable(true); // Desabilita o "Tentar Novamente"
+        tentativaField.setDisable(false);
+        btnVerificar.setDisable(false);
+        btnTentarNovamente.setDisable(true);
     }
 
-    // Verifica a tentativa do usuário
     private void verificarTentativa() {
         try {
             int tentativa = Integer.parseInt(tentativaField.getText());
@@ -85,13 +78,13 @@ public class Atividade08 extends Application {
 
             if (tentativa == numeroSecreto) {
                 lblResultado.setText("Acertou! Parabéns!");
-                // Fim de jogo
+
                 tentativaField.setDisable(true);
                 btnVerificar.setDisable(true);
                 btnTentarNovamente.setDisable(false);
             } else {
                 lblResultado.setText("Errou! O número era " + numeroSecreto + ".");
-                // Fim de jogo
+
                 tentativaField.setDisable(true);
                 btnVerificar.setDisable(true);
                 btnTentarNovamente.setDisable(false);
