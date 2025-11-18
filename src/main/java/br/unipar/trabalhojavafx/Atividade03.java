@@ -25,7 +25,6 @@ public class Atividade03 extends Application {
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
-        // Componentes de Entrada
         grid.add(new Label("Nome:"), 0, 0);
         TextField nomeField = new TextField();
         grid.add(nomeField, 1, 0);
@@ -37,42 +36,38 @@ public class Atividade03 extends Application {
         grid.add(new Label("Sexo:"), 0, 2);
         ComboBox<String> sexoBox = new ComboBox<>();
         sexoBox.getItems().addAll("Masculino", "Feminino", "Outro");
-        sexoBox.setValue("Masculino"); // Valor padrão
+        sexoBox.setValue("Masculino");
         grid.add(sexoBox, 1, 2);
 
         grid.add(new Label("Interesses:"), 0, 3);
         CheckBox esportesCheck = new CheckBox("Gosta de praticar esportes");
         grid.add(esportesCheck, 1, 3);
 
-        // Botão de Análise
-        Button btnAnalisar = new Button("Analisar");
-        grid.add(btnAnalisar, 0, 4, 2, 1); // Ocupa 2 colunas
 
-        // Rótulos de Resultado
+        Button btnAnalisar = new Button("Analisar");
+        grid.add(btnAnalisar, 0, 4, 2, 1);
+
         Label lblResumo = new Label("Resumo:");
         Label lblObservacao = new Label("Observação:");
 
         VBox resultadosVBox = new VBox(5, lblResumo, lblObservacao);
         grid.add(resultadosVBox, 0, 5, 2, 1);
 
-        // --- Lógica de Eventos ---
-
         btnAnalisar.setOnAction(event -> {
             try {
-                // Coleta de Dados
+
                 String nome = nomeField.getText();
                 int idade = Integer.parseInt(idadeField.getText());
                 String sexo = sexoBox.getValue();
                 boolean gostaDeEsportes = esportesCheck.isSelected();
 
-                // Construção do Resumo
+
                 String gostaEsportesStr = gostaDeEsportes ? "gosta de esportes" : "não gosta de esportes";
                 String resumo = String.format("%s, %d anos, do sexo %s, %s.",
                         nome, idade, sexo.toLowerCase(), gostaEsportesStr);
 
                 lblResumo.setText(resumo);
 
-                // Construção da Observação
                 if (idade < 18) {
                     lblObservacao.setText("Observação: Menor de idade.");
                 } else {
