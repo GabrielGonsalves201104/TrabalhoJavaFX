@@ -1,4 +1,4 @@
-package br.unipar.trabalhojavafx; // ADICIONADO COM BASE NA SUA IMAGEM
+package br.unipar.trabalhojavafx;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -23,7 +23,6 @@ public class Atividade01 extends Application {
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
-        // Rótulos e Campos de Texto
         grid.add(new Label("Número 1:"), 0, 0);
         TextField num1Field = new TextField();
         grid.add(num1Field, 1, 0);
@@ -32,22 +31,19 @@ public class Atividade01 extends Application {
         TextField num2Field = new TextField();
         grid.add(num2Field, 1, 1);
 
-        // Botões de Operação
-        HBox hboxBotoes = new HBox(10); // HBox para alinhar botões horizontalmente
+        HBox hboxBotoes = new HBox(10);
         hboxBotoes.setAlignment(Pos.CENTER);
         Button btnSoma = new Button("+");
         Button btnSub = new Button("-");
         Button btnMult = new Button("×");
         Button btnDiv = new Button("÷");
         hboxBotoes.getChildren().addAll(btnSoma, btnSub, btnMult, btnDiv);
-        grid.add(hboxBotoes, 0, 2, 2, 1); // Ocupa 2 colunas
+        grid.add(hboxBotoes, 0, 2, 2, 1);
 
-        // Rótulo de Resultado
+
         Label lblResultado = new Label("Resultado:");
-        grid.add(lblResultado, 0, 3, 2, 1); // Ocupa 2 colunas
+        grid.add(lblResultado, 0, 3, 2, 1);
         lblResultado.setAlignment(Pos.CENTER);
-
-        // --- Lógica de Eventos ---
 
         btnSoma.setOnAction(event -> {
             try {
