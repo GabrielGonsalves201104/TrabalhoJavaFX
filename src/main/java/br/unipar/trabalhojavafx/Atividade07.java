@@ -20,7 +20,7 @@ public class Atividade07 extends Application {
     private Circle circuloAmarelo;
     private Circle circuloVerde;
     private Timeline timeline;
-    private int estadoAtual = 0; // 0 = Vermelho, 1 = Amarelo, 2 = Verde
+    private int estadoAtual = 0;
 
     @Override
     public void start(Stage primaryStage) {
@@ -30,7 +30,6 @@ public class Atividade07 extends Application {
         vboxPrincipal.setAlignment(Pos.CENTER);
         vboxPrincipal.setPadding(new Insets(20));
 
-        // VBox para as luzes do semáforo
         VBox semaforoBox = new VBox(10);
         semaforoBox.setAlignment(Pos.CENTER);
         semaforoBox.setStyle("-fx-background-color: #333; -fx-padding: 10px; -fx-border-radius: 10; -fx-background-radius: 10;");
@@ -41,22 +40,18 @@ public class Atividade07 extends Application {
 
         semaforoBox.getChildren().addAll(circuloVermelho, circuloAmarelo, circuloVerde);
 
-        // Botões de controle
         HBox botoesBox = new HBox(10);
         botoesBox.setAlignment(Pos.CENTER);
         Button btnIniciar = new Button("Iniciar");
         Button btnParar = new Button("Parar");
         botoesBox.getChildren().addAll(btnIniciar, btnParar);
 
-        // --- Configuração da Timeline ---
-        // A Timeline irá disparar um evento a cada 2 segundos
         timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> trocarEstado()));
-        timeline.setCycleCount(Timeline.INDEFINITE); // Loop infinito
+        timeline.setCycleCount(Timeline.INDEFINITE);
 
-        // --- Lógica de Eventos dos Botões ---
         btnIniciar.setOnAction(event -> {
             if (timeline.getStatus() != Timeline.Status.RUNNING) {
-                // Começa pelo vermelho
+
                 estadoAtual = 0;
                 atualizarLuzes();
                 timeline.play();
@@ -65,12 +60,11 @@ public class Atividade07 extends Application {
 
         btnParar.setOnAction(event -> {
             timeline.stop();
-            // Reseta as luzes para cinza
+
             estadoAtual = -1;
             atualizarLuzes();
         });
 
-        // Estado inicial (parado)
         btnParar.fire();
 
         vboxPrincipal.getChildren().addAll(semaforoBox, botoesBox);
@@ -79,32 +73,30 @@ public class Atividade07 extends Application {
         primaryStage.show();
     }
 
-    // Método para trocar o estado do semáforo
     private void trocarEstado() {
-        // Avança para o próximo estado (0 -> 1 -> 2 -> 0)
+
         estadoAtual = (estadoAtual + 1) % 3;
         atualizarLuzes();
     }
 
-    // Método para atualizar as cores dos círculos com base no estadoAtual
     private void atualizarLuzes() {
         switch (estadoAtual) {
-            case 0: // Vermelho
+            case 0:
                 circuloVermelho.setFill(Color.RED);
                 circuloAmarelo.setFill(Color.GRAY);
                 circuloVerde.setFill(Color.GRAY);
                 break;
-            case 1: // Amarelo
+            case 1:
                 circuloVermelho.setFill(Color.GRAY);
                 circuloAmarelo.setFill(Color.YELLOW);
                 circuloVerde.setFill(Color.GRAY);
                 break;
-            case 2: // Verde
+            case 2:
                 circuloVermelho.setFill(Color.GRAY);
                 circuloAmarelo.setFill(Color.GRAY);
                 circuloVerde.setFill(Color.GREEN);
                 break;
-            default: // Parado (-1)
+            default:
                 circuloVermelho.setFill(Color.GRAY);
                 circuloAmarelo.setFill(Color.GRAY);
                 circuloVerde.setFill(Color.GRAY);
