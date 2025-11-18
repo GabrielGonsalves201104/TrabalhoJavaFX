@@ -17,11 +17,9 @@ public class Atividade02 extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Atividade 2 - Conversor de Temperatura");
 
-        VBox vbox = new VBox(15); // Espaçamento vertical de 15
+        VBox vbox = new VBox(15);
         vbox.setAlignment(Pos.CENTER);
         vbox.setPadding(new Insets(25, 25, 25, 25));
-
-        // Entrada de Temperatura
         HBox entradaBox = new HBox(10);
         entradaBox.setAlignment(Pos.CENTER);
         Label lblInstrucao = new Label("Digite a Temperatura:");
@@ -30,19 +28,15 @@ public class Atividade02 extends Application {
         tempField.setPrefWidth(100);
         entradaBox.getChildren().addAll(lblInstrucao, tempField);
 
-        // Botões de Conversão
         HBox botoesBox = new HBox(10);
         botoesBox.setAlignment(Pos.CENTER);
         Button btnParaF = new Button("Converter para °F");
         Button btnParaC = new Button("Converter para °C");
         botoesBox.getChildren().addAll(btnParaF, btnParaC);
 
-        // Rótulo de Resultado
         Label lblResultado = new Label("Resultado:");
 
-        // --- Lógica de Eventos ---
 
-        // (Temp * 9/5) + 32
         btnParaF.setOnAction(event -> {
             try {
                 double tempC = Double.parseDouble(tempField.getText());
@@ -53,7 +47,6 @@ public class Atividade02 extends Application {
             }
         });
 
-        // (Temp - 32) * 5/9
         btnParaC.setOnAction(event -> {
             try {
                 double tempF = Double.parseDouble(tempField.getText());
