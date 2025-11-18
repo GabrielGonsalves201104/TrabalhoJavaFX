@@ -30,7 +30,6 @@ public class Atividade05 extends Application {
         vbox.setPadding(new Insets(20));
         vbox.setAlignment(Pos.CENTER);
 
-        // --- Formulário de Entrada ---
         HBox formBox = new HBox(10);
         formBox.setAlignment(Pos.CENTER);
 
@@ -47,14 +46,12 @@ public class Atividade05 extends Application {
 
         formBox.getChildren().addAll(new Label("Nome:"), nomeField, new Label("Idade:"), idadeField, new Label("Curso:"), cursoBox);
 
-        // --- Botões ---
         HBox botoesBox = new HBox(10);
         botoesBox.setAlignment(Pos.CENTER);
         Button btnAdicionar = new Button("Adicionar");
         Button btnExcluir = new Button("Excluir");
         botoesBox.getChildren().addAll(btnAdicionar, btnExcluir);
 
-        // --- Configuração da Tabela ---
         TableColumn<Aluno, String> colNome = new TableColumn<>("Nome");
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colNome.setMinWidth(150);
@@ -70,7 +67,6 @@ public class Atividade05 extends Application {
         tabelaAlunos.getColumns().addAll(colNome, colIdade, colCurso);
         tabelaAlunos.setItems(listaAlunos);
 
-        // --- Lógica de Eventos ---
         btnAdicionar.setOnAction(event -> {
             try {
                 String nome = nomeField.getText();
@@ -80,13 +76,12 @@ public class Atividade05 extends Application {
                 if (nome != null && !nome.isEmpty() && curso != null) {
                     listaAlunos.add(new Aluno(nome, idade, curso));
 
-                    // Limpar campos
                     nomeField.clear();
                     idadeField.clear();
                     cursoBox.setValue(null);
                 }
             } catch (NumberFormatException e) {
-                // Idealmente, mostrar um Label de erro
+
                 System.out.println("Erro: Idade inválida.");
             }
         });
@@ -105,7 +100,7 @@ public class Atividade05 extends Application {
         primaryStage.show();
     }
 
-    // Classe de Modelo (Aluno) - Deve ser public
+
     public static class Aluno {
         private String nome;
         private int idade;
@@ -117,7 +112,6 @@ public class Atividade05 extends Application {
             this.curso = curso;
         }
 
-        // Getters públicos são necessários para o PropertyValueFactory
         public String getNome() {
             return nome;
         }
