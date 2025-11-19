@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 
 public class Atividade09 extends Application {
 
-    // Tarifas
     private static final double TARIFA_RESIDENCIAL = 0.60;
     private static final double TARIFA_COMERCIAL = 0.48;
     private static final double TARIFA_INDUSTRIAL = 0.75;
@@ -28,7 +27,6 @@ public class Atividade09 extends Application {
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
-        // Entradas
         grid.add(new Label("Nome do Cliente:"), 0, 0);
         TextField nomeField = new TextField();
         grid.add(nomeField, 1, 0);
@@ -40,18 +38,18 @@ public class Atividade09 extends Application {
         grid.add(new Label("Tipo de Residência:"), 0, 2);
         ComboBox<String> tipoBox = new ComboBox<>();
         tipoBox.getItems().addAll("Residencial", "Comercial", "Industrial");
-        tipoBox.setValue("Residencial"); // Valor padrão
+        tipoBox.setValue("Residencial");
         grid.add(tipoBox, 1, 2);
 
-        // Botão
+
         Button btnCalcular = new Button("Calcular Conta");
         grid.add(btnCalcular, 0, 3, 2, 1);
 
-        // Resultado
+
         Label lblResultado = new Label("Resultado:");
         grid.add(lblResultado, 0, 4, 2, 1);
 
-        // --- Lógica de Eventos ---
+
         btnCalcular.setOnAction(event -> {
             try {
                 String nome = nomeField.getText();
